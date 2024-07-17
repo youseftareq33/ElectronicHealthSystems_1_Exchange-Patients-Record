@@ -1,0 +1,556 @@
+<channel version="4.5.0">
+  <id>f6bf99ce-4645-4eca-9ffc-764af0765fbc</id>
+  <nextMetaDataId>2</nextMetaDataId>
+  <name>Medicare-Lab_2_Dr-Ahmad-Clinic</name>
+  <description></description>
+  <revision>3</revision>
+  <sourceConnector version="4.5.0">
+    <metaDataId>0</metaDataId>
+    <name>sourceConnector</name>
+    <properties class="com.mirth.connect.connectors.jdbc.DatabaseReceiverProperties" version="4.5.0">
+      <pluginProperties/>
+      <pollConnectorProperties version="4.5.0">
+        <pollingType>INTERVAL</pollingType>
+        <pollOnStart>true</pollOnStart>
+        <pollingFrequency>43200000</pollingFrequency>
+        <pollingHour>0</pollingHour>
+        <pollingMinute>0</pollingMinute>
+        <cronJobs/>
+        <pollConnectorPropertiesAdvanced>
+          <weekly>true</weekly>
+          <inactiveDays>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+          </inactiveDays>
+          <dayOfMonth>1</dayOfMonth>
+          <allDay>true</allDay>
+          <startingHour>8</startingHour>
+          <startingMinute>0</startingMinute>
+          <endingHour>17</endingHour>
+          <endingMinute>0</endingMinute>
+        </pollConnectorPropertiesAdvanced>
+      </pollConnectorProperties>
+      <sourceConnectorProperties version="4.5.0">
+        <responseVariable>None</responseVariable>
+        <respondAfterProcessing>true</respondAfterProcessing>
+        <processBatch>false</processBatch>
+        <firstResponse>false</firstResponse>
+        <processingThreads>1</processingThreads>
+        <resourceIds class="linked-hash-map">
+          <entry>
+            <string>Default Resource</string>
+            <string>[Default Resource]</string>
+          </entry>
+        </resourceIds>
+        <queueBufferSize>1000</queueBufferSize>
+      </sourceConnectorProperties>
+      <driver>com.mysql.cj.jdbc.Driver</driver>
+      <url>jdbc:mysql://localhost:3306/DB_Medicare_Lab</url>
+      <username>root</username>
+      <password>1202057</password>
+      <select>SELECT medicare_lab.P_ID AS medicare_lab_P_ID, medicare_lab.P_NAME AS medicare_lab_P_NAME, medicare_lab.Address AS medicare_lab_Address, medicare_lab.PhoneNo AS medicare_lab_PhoneNo, medicare_lab.Birth_Date AS medicare_lab_Birth_Date, medicare_lab.Gender AS medicare_lab_Gender, medicare_lab.Report AS medicare_lab_Report, medicare_lab.Type AS medicare_lab_Type, medicare_lab.Value AS medicare_lab_Value
+FROM medicare_lab
+
+</select>
+      <update></update>
+      <useScript>false</useScript>
+      <aggregateResults>false</aggregateResults>
+      <cacheResults>true</cacheResults>
+      <keepConnectionOpen>true</keepConnectionOpen>
+      <updateMode>1</updateMode>
+      <retryCount>3</retryCount>
+      <retryInterval>10000</retryInterval>
+      <fetchSize>1000</fetchSize>
+      <encoding>DEFAULT_ENCODING</encoding>
+    </properties>
+    <transformer version="4.5.0">
+      <elements>
+        <com.mirth.connect.plugins.mapper.MapperStep version="4.5.0">
+          <name>medicare_lab_p_id</name>
+          <sequenceNumber>0</sequenceNumber>
+          <enabled>true</enabled>
+          <variable>medicare_lab_p_id</variable>
+          <mapping>msg[&apos;medicare_lab_p_id&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;mcLab&quot;</left>
+              <right class="string">&quot;AhC&quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+          </replacements>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep version="4.5.0">
+          <name>medicare_lab_p_name</name>
+          <sequenceNumber>1</sequenceNumber>
+          <enabled>true</enabled>
+          <variable>medicare_lab_p_name</variable>
+          <mapping>msg[&apos;medicare_lab_p_name&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep version="4.5.0">
+          <name>medicare_lab_address</name>
+          <sequenceNumber>2</sequenceNumber>
+          <enabled>true</enabled>
+          <variable>medicare_lab_address</variable>
+          <mapping>msg[&apos;medicare_lab_address&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep version="4.5.0">
+          <name>medicare_lab_phoneno</name>
+          <sequenceNumber>3</sequenceNumber>
+          <enabled>true</enabled>
+          <variable>medicare_lab_phoneno</variable>
+          <mapping>msg[&apos;medicare_lab_phoneno&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-&quot;</left>
+              <right class="string">&quot;&quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+          </replacements>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep version="4.5.0">
+          <name>medicare_lab_birth_date</name>
+          <sequenceNumber>4</sequenceNumber>
+          <enabled>true</enabled>
+          <variable>medicare_lab_birth_date</variable>
+          <mapping>msg[&apos;medicare_lab_birth_date&apos;].toString()</mapping>
+          <defaultValue>&quot;&quot;</defaultValue>
+          <replacements>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;01&quot;</left>
+              <right class="string">&quot;1&quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;02&quot;</left>
+              <right class="string">&quot;2&quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;03&quot;</left>
+              <right class="string">&quot;3&quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;04&quot;</left>
+              <right class="string">&quot;4&quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;05&quot;</left>
+              <right class="string">&quot;5&quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;06&quot;</left>
+              <right class="string">&quot;6&quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;07&quot;</left>
+              <right class="string">&quot;7&quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;08&quot;</left>
+              <right class="string">&quot;8&quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;09&quot;</left>
+              <right class="string">&quot;9&quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-01-&quot;</left>
+              <right class="string">&quot; Jan &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-02-&quot;</left>
+              <right class="string">&quot; Feb &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-03-&quot;</left>
+              <right class="string">&quot; Mar &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-04-&quot;</left>
+              <right class="string">&quot; Apr &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-05-&quot;</left>
+              <right class="string">&quot; May &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-06-&quot;</left>
+              <right class="string">&quot; Jun &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-07-&quot;</left>
+              <right class="string">&quot; Jul &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-08-&quot;</left>
+              <right class="string">&quot; Aug &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-09-&quot;</left>
+              <right class="string">&quot; Sep &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-10-&quot;</left>
+              <right class="string">&quot; Oct &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-11-&quot;</left>
+              <right class="string">&quot; Nov &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-12-&quot;</left>
+              <right class="string">&quot; Dec &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-1-&quot;</left>
+              <right class="string">&quot; Jan &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-2-&quot;</left>
+              <right class="string">&quot; Feb &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-3-&quot;</left>
+              <right class="string">&quot; Mar &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-4-&quot;</left>
+              <right class="string">&quot; Apr &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-5-&quot;</left>
+              <right class="string">&quot; May &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-6-&quot;</left>
+              <right class="string">&quot; Jun &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-7-&quot;</left>
+              <right class="string">&quot; Jul &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-8-&quot;</left>
+              <right class="string">&quot; Aug &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;-9-&quot;</left>
+              <right class="string">&quot; Sep &quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+          </replacements>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep version="4.5.0">
+          <name>medicare_lab_gender</name>
+          <sequenceNumber>5</sequenceNumber>
+          <enabled>true</enabled>
+          <variable>medicare_lab_gender</variable>
+          <mapping>msg[&apos;medicare_lab_gender&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;Male&quot;</left>
+              <right class="string">&quot;M&quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+            <org.apache.commons.lang3.tuple.ImmutablePair>
+              <left class="string">&quot;Female&quot;</left>
+              <right class="string">&quot;F&quot;</right>
+            </org.apache.commons.lang3.tuple.ImmutablePair>
+          </replacements>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep version="4.5.0">
+          <name>medicare_lab_report</name>
+          <sequenceNumber>6</sequenceNumber>
+          <enabled>true</enabled>
+          <variable>medicare_lab_report</variable>
+          <mapping>msg[&apos;medicare_lab_report&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep version="4.5.0">
+          <name>medicare_lab_type</name>
+          <sequenceNumber>7</sequenceNumber>
+          <enabled>true</enabled>
+          <variable>medicare_lab_type</variable>
+          <mapping>msg[&apos;medicare_lab_type&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep version="4.5.0">
+          <name>medicare_lab_value</name>
+          <sequenceNumber>8</sequenceNumber>
+          <enabled>true</enabled>
+          <variable>medicare_lab_value</variable>
+          <mapping>msg[&apos;medicare_lab_value&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+      </elements>
+      <inboundTemplate encoding="base64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8cmVzdWx0Pg0KICAgIDxtZWRpY2FyZV9sYWJfcF9pZD52YWx1ZTwvbWVkaWNhcmVfbGFiX3BfaWQ+DQogICAgPG1lZGljYXJlX2xhYl9wX25hbWU+dmFsdWU8L21lZGljYXJlX2xhYl9wX25hbWU+DQogICAgPG1lZGljYXJlX2xhYl9hZGRyZXNzPnZhbHVlPC9tZWRpY2FyZV9sYWJfYWRkcmVzcz4NCiAgICA8bWVkaWNhcmVfbGFiX3Bob25lbm8+dmFsdWU8L21lZGljYXJlX2xhYl9waG9uZW5vPg0KICAgIDxtZWRpY2FyZV9sYWJfYmlydGhfZGF0ZT52YWx1ZTwvbWVkaWNhcmVfbGFiX2JpcnRoX2RhdGU+DQogICAgPG1lZGljYXJlX2xhYl9nZW5kZXI+dmFsdWU8L21lZGljYXJlX2xhYl9nZW5kZXI+DQogICAgPG1lZGljYXJlX2xhYl9yZXBvcnQ+dmFsdWU8L21lZGljYXJlX2xhYl9yZXBvcnQ+DQogICAgPG1lZGljYXJlX2xhYl90eXBlPnZhbHVlPC9tZWRpY2FyZV9sYWJfdHlwZT4NCiAgICA8bWVkaWNhcmVfbGFiX3ZhbHVlPnZhbHVlPC9tZWRpY2FyZV9sYWJfdmFsdWU+DQo8L3Jlc3VsdD4NCg==</inboundTemplate>
+      <outboundTemplate encoding="base64"></outboundTemplate>
+      <inboundDataType>XML</inboundDataType>
+      <outboundDataType>HL7V2</outboundDataType>
+      <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="4.5.0">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="4.5.0">
+          <stripNamespaces>false</stripNamespaces>
+        </serializationProperties>
+        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="4.5.0">
+          <splitType>Element_Name</splitType>
+          <elementName></elementName>
+          <level>1</level>
+          <query></query>
+          <batchScript></batchScript>
+        </batchProperties>
+      </inboundProperties>
+      <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="4.5.0">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="4.5.0">
+          <handleRepetitions>true</handleRepetitions>
+          <handleSubcomponents>true</handleSubcomponents>
+          <useStrictParser>false</useStrictParser>
+          <useStrictValidation>false</useStrictValidation>
+          <stripNamespaces>false</stripNamespaces>
+          <segmentDelimiter>\r</segmentDelimiter>
+          <convertLineBreaks>true</convertLineBreaks>
+        </serializationProperties>
+        <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="4.5.0">
+          <useStrictParser>false</useStrictParser>
+          <useStrictValidation>false</useStrictValidation>
+          <segmentDelimiter>\r</segmentDelimiter>
+        </deserializationProperties>
+        <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="4.5.0">
+          <splitType>MSH_Segment</splitType>
+          <batchScript></batchScript>
+        </batchProperties>
+        <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="4.5.0">
+          <segmentDelimiter>\r</segmentDelimiter>
+          <successfulACKCode>AA</successfulACKCode>
+          <successfulACKMessage></successfulACKMessage>
+          <errorACKCode>AE</errorACKCode>
+          <errorACKMessage>An Error Occurred Processing Message.</errorACKMessage>
+          <rejectedACKCode>AR</rejectedACKCode>
+          <rejectedACKMessage>Message Rejected.</rejectedACKMessage>
+          <msh15ACKAccept>false</msh15ACKAccept>
+          <dateFormat>yyyyMMddHHmmss.SSS</dateFormat>
+        </responseGenerationProperties>
+        <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="4.5.0">
+          <successfulACKCode>AA,CA</successfulACKCode>
+          <errorACKCode>AE,CE</errorACKCode>
+          <rejectedACKCode>AR,CR</rejectedACKCode>
+          <validateMessageControlId>true</validateMessageControlId>
+          <originalMessageControlId>Destination_Encoded</originalMessageControlId>
+          <originalIdMapVariable></originalIdMapVariable>
+        </responseValidationProperties>
+      </outboundProperties>
+    </transformer>
+    <filter version="4.5.0">
+      <elements/>
+    </filter>
+    <transportName>Database Reader</transportName>
+    <mode>SOURCE</mode>
+    <enabled>true</enabled>
+    <waitForPrevious>true</waitForPrevious>
+  </sourceConnector>
+  <destinationConnectors>
+    <connector version="4.5.0">
+      <metaDataId>1</metaDataId>
+      <name>Destination 1</name>
+      <properties class="com.mirth.connect.connectors.jdbc.DatabaseDispatcherProperties" version="4.5.0">
+        <pluginProperties/>
+        <destinationConnectorProperties version="4.5.0">
+          <queueEnabled>false</queueEnabled>
+          <sendFirst>false</sendFirst>
+          <retryIntervalMillis>10000</retryIntervalMillis>
+          <regenerateTemplate>false</regenerateTemplate>
+          <retryCount>0</retryCount>
+          <rotate>false</rotate>
+          <includeFilterTransformer>false</includeFilterTransformer>
+          <threadCount>1</threadCount>
+          <threadAssignmentVariable></threadAssignmentVariable>
+          <validateResponse>false</validateResponse>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
+        </destinationConnectorProperties>
+        <driver>com.mysql.cj.jdbc.Driver</driver>
+        <url>jdbc:mysql://localhost:3306/DB_Dr_Ahmad_Clinic</url>
+        <username>root</username>
+        <password>1202057</password>
+        <query>INSERT INTO dr_ahmad_clinic (ID, Name, Gender, Address, DOB, Telephone, Finding, Action, Value) VALUE
+(${medicare_lab_p_id}, ${medicare_lab_p_name}, ${medicare_lab_gender}, ${medicare_lab_address}, ${medicare_lab_birth_date}, CONCAT(&apos;+97&apos;, ${medicare_lab_phoneno}), ${medicare_lab_report}, ${medicare_lab_type}, ${medicare_lab_value});</query>
+        <useScript>false</useScript>
+      </properties>
+      <transformer version="4.5.0">
+        <elements/>
+        <inboundDataType>HL7V2</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="4.5.0">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="4.5.0">
+            <handleRepetitions>true</handleRepetitions>
+            <handleSubcomponents>true</handleSubcomponents>
+            <useStrictParser>false</useStrictParser>
+            <useStrictValidation>false</useStrictValidation>
+            <stripNamespaces>false</stripNamespaces>
+            <segmentDelimiter>\r</segmentDelimiter>
+            <convertLineBreaks>true</convertLineBreaks>
+          </serializationProperties>
+          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="4.5.0">
+            <useStrictParser>false</useStrictParser>
+            <useStrictValidation>false</useStrictValidation>
+            <segmentDelimiter>\r</segmentDelimiter>
+          </deserializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="4.5.0">
+            <splitType>MSH_Segment</splitType>
+            <batchScript></batchScript>
+          </batchProperties>
+          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="4.5.0">
+            <segmentDelimiter>\r</segmentDelimiter>
+            <successfulACKCode>AA</successfulACKCode>
+            <successfulACKMessage></successfulACKMessage>
+            <errorACKCode>AE</errorACKCode>
+            <errorACKMessage>An Error Occurred Processing Message.</errorACKMessage>
+            <rejectedACKCode>AR</rejectedACKCode>
+            <rejectedACKMessage>Message Rejected.</rejectedACKMessage>
+            <msh15ACKAccept>false</msh15ACKAccept>
+            <dateFormat>yyyyMMddHHmmss.SSS</dateFormat>
+          </responseGenerationProperties>
+          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="4.5.0">
+            <successfulACKCode>AA,CA</successfulACKCode>
+            <errorACKCode>AE,CE</errorACKCode>
+            <rejectedACKCode>AR,CR</rejectedACKCode>
+            <validateMessageControlId>true</validateMessageControlId>
+            <originalMessageControlId>Destination_Encoded</originalMessageControlId>
+            <originalIdMapVariable></originalIdMapVariable>
+          </responseValidationProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="4.5.0">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="4.5.0">
+            <stripNamespaces>false</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="4.5.0">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </transformer>
+      <responseTransformer version="4.5.0">
+        <elements/>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="4.5.0">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="4.5.0">
+            <stripNamespaces>false</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="4.5.0">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="4.5.0">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="4.5.0">
+            <stripNamespaces>false</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="4.5.0">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </responseTransformer>
+      <filter version="4.5.0">
+        <elements/>
+      </filter>
+      <transportName>Database Writer</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>true</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </connector>
+  </destinationConnectors>
+  <preprocessingScript>// Modify the message variable below to pre process data
+return message;</preprocessingScript>
+  <postprocessingScript>// This script executes once after a message has been processed
+// Responses returned from here will be stored as &quot;Postprocessor&quot; in the response map
+return;</postprocessingScript>
+  <deployScript>// This script executes once when the channel is deployed
+// You only have access to the globalMap and globalChannelMap here to persist data
+return;</deployScript>
+  <undeployScript>// This script executes once when the channel is undeployed
+// You only have access to the globalMap and globalChannelMap here to persist data
+return;</undeployScript>
+  <properties version="4.5.0">
+    <clearGlobalChannelMap>true</clearGlobalChannelMap>
+    <messageStorageMode>DEVELOPMENT</messageStorageMode>
+    <encryptData>false</encryptData>
+    <encryptAttachments>false</encryptAttachments>
+    <encryptCustomMetaData>false</encryptCustomMetaData>
+    <removeContentOnCompletion>false</removeContentOnCompletion>
+    <removeOnlyFilteredOnCompletion>false</removeOnlyFilteredOnCompletion>
+    <removeAttachmentsOnCompletion>false</removeAttachmentsOnCompletion>
+    <initialState>STARTED</initialState>
+    <storeAttachments>true</storeAttachments>
+    <metaDataColumns>
+      <metaDataColumn>
+        <name>SOURCE</name>
+        <type>STRING</type>
+        <mappingName>mirth_source</mappingName>
+      </metaDataColumn>
+      <metaDataColumn>
+        <name>TYPE</name>
+        <type>STRING</type>
+        <mappingName>mirth_type</mappingName>
+      </metaDataColumn>
+    </metaDataColumns>
+    <attachmentProperties version="4.5.0">
+      <type>None</type>
+      <properties/>
+    </attachmentProperties>
+    <resourceIds class="linked-hash-map">
+      <entry>
+        <string>Default Resource</string>
+        <string>[Default Resource]</string>
+      </entry>
+    </resourceIds>
+  </properties>
+  <exportData>
+    <metadata>
+      <enabled>true</enabled>
+      <lastModified>
+        <time>1717882981144</time>
+        <timezone>Asia/Hebron</timezone>
+      </lastModified>
+      <pruningSettings>
+        <archiveEnabled>true</archiveEnabled>
+        <pruneErroredMessages>false</pruneErroredMessages>
+      </pruningSettings>
+      <userId>1</userId>
+    </metadata>
+  </exportData>
+</channel>
